@@ -24,15 +24,15 @@ public class LoginPage extends BasePage{
     /*METHODS TO INTERACT WITH THE WEBPAGE - goes back to the loginpage after method is executed
      */
     public LoginPage provideEmail(String email) {
-        emailField.sendKeys(email)
+        emailField.sendKeys(email);
         return this;
     }
     public LoginPage providePassword(String password) {
-        passwordField.sendKeys(password)
+        passwordField.sendKeys(password);
         return this;
     }
     public LoginPage clickSubmit() {
-        submitBtn.click()
+        submitBtn.click();
         return this;
     }
     /*FULL LOGIN METHOD - shortcut method, can just call login() to login*/

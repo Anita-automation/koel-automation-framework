@@ -52,21 +52,4 @@ public class BaseTest {
         driver.get(url);
     }
 
-
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void clickLoginButton() {
-        WebElement submit = driver.findElement(By.xpath("//button[@type='submit']"));
-        submit.click();
-    }
 }
