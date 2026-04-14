@@ -2,6 +2,8 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
@@ -10,23 +12,25 @@ public class LoginPage extends BasePage{
     sends it BasePage*/
 
     /*LOCATORS FOR PAGE ELEMENTS - describe how to find the email field, password field and click button on
-    the webpage
+    the webpage. This finds the element
      */
-    By emailField = By.cssSelector("input[type='email']");
-    By passwordField = By.cssSelector("input[type='password']");
-    By submitBtn = By.cssSelector("button[type='submit']");
-
-    /*METHODS TO INTERACT WITH THE WEBPAGE - fine the email filed, type the email into it, find the password field
-    and type the password into it. Click submit.
+    @FindBy(css = "input[type='email']")
+    WebElement emailField;
+    @FindBy(css = "input[type='password']")
+    WebElement passwordField;
+    @FindBy(css = "button[type='submit']")
+    WebElement submitBtn;
+    
+    /*METHODS TO INTERACT WITH THE WEBPAGE
      */
     public void provideEmail(String email) {
-        findElement(emailField).sendKeys(email);
+        emailField.sendKeys(email);
     }
     public void providePassword(String password) {
-        findElement(passwordField).sendKeys(password);
+        passwordField.sendKeys(password);
     }
     public void clickSubmit() {
-        findElement(submitBtn).click();
+        submitBtn.click();
     }
     /*FULL LOGIN METHOD - shortcut method, can just call login() to login*/
     public void login() {

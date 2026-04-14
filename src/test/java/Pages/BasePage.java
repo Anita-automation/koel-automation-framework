@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,6 +21,7 @@ public class BasePage { /*starts the class*/
         driver = givenDriver; /*stores the driver passed into the constructor*/
         wait = new WebDriverWait(driver, Duration.ofSeconds(5)); /*creates a wait that will wait up to 5 s for elements*/
         actions = new Actions(driver); /*creates an actions object so can perform actions*/
+        PageFactory.initElements(driver, this); /*tells the thing to return to the same page after action*/
     }
 
     public WebElement findElement(By locator) { /*creates an element that finds an element using a locator*/
