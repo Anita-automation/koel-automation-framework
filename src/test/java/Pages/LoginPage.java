@@ -20,17 +20,20 @@ public class LoginPage extends BasePage{
     WebElement passwordField;
     @FindBy(css = "button[type='submit']")
     WebElement submitBtn;
-    
-    /*METHODS TO INTERACT WITH THE WEBPAGE
+
+    /*METHODS TO INTERACT WITH THE WEBPAGE - goes back to the loginpage after method is executed
      */
-    public void provideEmail(String email) {
-        emailField.sendKeys(email);
+    public LoginPage provideEmail(String email) {
+        emailField.sendKeys(email)
+        return this;
     }
-    public void providePassword(String password) {
-        passwordField.sendKeys(password);
+    public LoginPage providePassword(String password) {
+        passwordField.sendKeys(password)
+        return this;
     }
-    public void clickSubmit() {
-        submitBtn.click();
+    public LoginPage clickSubmit() {
+        submitBtn.click()
+        return this;
     }
     /*FULL LOGIN METHOD - shortcut method, can just call login() to login*/
     public void login() {
