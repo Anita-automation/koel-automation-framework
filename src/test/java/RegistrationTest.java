@@ -9,12 +9,7 @@ import java.time.Duration;
 public class RegistrationTest extends BaseTest {
     @Test
     public void registrationNavigation() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String expectedUrl = "https://qa.koel.app/";
-        driver.get (expectedUrl);
-
+        driver.get ("https://qa.koel.app/");
         driver.findElement(By.xpath("//a[@href='registration']")).click();
 
         String actualUrl = driver.getCurrentUrl();
