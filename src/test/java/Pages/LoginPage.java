@@ -21,6 +21,10 @@ public class LoginPage extends BasePage{
     @FindBy(css = "button[type='submit']")
     WebElement submitBtn;
 
+    public WebElement getPasswordField() {
+        return passwordField;
+    }
+
     /*METHODS TO INTERACT WITH THE WEBPAGE - goes back to the loginpage after method is executed
      */
     public LoginPage provideEmail(String email) {

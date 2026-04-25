@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest {
                 .providePassword("AnitaAnita1029")
                 .clickSubmit();
 
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }
 
     @Test
