@@ -10,6 +10,7 @@
             <class name="BaseTest"/>
             <class name="RegistrationTest"/>
             <class name="PlayTest"/>
+            <class name="ProfileTest"/>
         </classes>
     </test>
 </suite>

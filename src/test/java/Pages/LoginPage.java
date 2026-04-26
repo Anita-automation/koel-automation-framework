@@ -27,6 +27,12 @@ public class LoginPage extends BasePage{
 
     /*METHODS TO INTERACT WITH THE WEBPAGE - goes back to the loginpage after method is executed
      */
+    public LoginPage navigateToPage() {
+        driver.get("https://qa.koel.app/"); // your Koel URL
+        return this;
+    }
+
+
     public LoginPage provideEmail(String email) {
         emailField.sendKeys(email);
         return this;
