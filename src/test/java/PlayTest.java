@@ -7,19 +7,19 @@ import org.testng.annotations.Test;
 public class PlayTest extends BaseTest{
 
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong() {
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
 
         // Login using your Page Object
         loginPage.provideEmail("anita.surewicz@testpro.io")
                 .providePassword("AnitaAnita1029")
                 .clickSubmit();
 
-        Thread.sleep(3000);
+        HomePage homePage = new HomePage(driver);
+        homePage.waitUntilLoaded();
 
         // Interact with the player using HomePage methods
-        homePage.clickPlayNextSong();
+        homePage.hoverOverPlayer();
         homePage.clickPlayButton();
 
         Assert.assertTrue(homePage.isSoundBarVisible());

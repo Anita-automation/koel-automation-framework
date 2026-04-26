@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
@@ -17,8 +18,18 @@ public class HomePage extends BasePage {
         return findElement(userAvatarIcon);
     }
 
+    By playerFooter = By.cssSelector("footer.player");
+
+    public void hoverOverPlayer() {
+        hoverOver(playerFooter);
+    }
+
+    public void waitUntilLoaded() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(userAvatarIcon));
+    }
+
     // NEW LOCATORS
-    By playNextSongBtn = By.xpath("//i[@role='button' and @title='Play next song']");
+    By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
     By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
     By soundBar = By.xpath("//img[@alt='Sound bars']");
 
@@ -34,4 +45,5 @@ public class HomePage extends BasePage {
     public boolean isSoundBarVisible() {
         return findElement(soundBar).isDisplayed();
     }
+
 }

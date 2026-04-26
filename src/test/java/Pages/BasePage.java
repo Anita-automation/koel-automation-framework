@@ -28,4 +28,9 @@ public class BasePage { /*starts the class*/
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); /*waits until element becomes visible and then returns it */
     }
 
+    public void hoverOver(By locator) {
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        actions.moveToElement(element).perform();
+    }
+
 }
