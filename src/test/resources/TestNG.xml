@@ -11,6 +11,7 @@
             <class name="RegistrationTest"/>
             <class name="PlayTest"/>
             <class name="ProfileTest"/>
+            <class name="PlaylistTest"/>
         </classes>
     </test>
 </suite>
