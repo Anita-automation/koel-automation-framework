@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage { /*starts the class*/
+public class BasePage { /*starts the BasePage class, every page will extend it*/
     WebDriver driver; /*creates a variable to store the WebDriver. Every page and object will use it*/
-    WebDriverWait wait; /*creates a variable to store an explicit wait*/
-    Actions actions; /*creates a variable to store an action object*/
+    WebDriverWait wait; /*creates a variable to store an explicit wait, wait for element*/
+    Actions actions; /*creates a variable to store an action object like hover or drag*/
 
-    /*CONSTRUCTOR* It runs automatically when a new page is created*/
+    /*CONSTRUCTOR* It runs automatically when a new page is created, connects the page to the driver*/
 
     public BasePage( WebDriver givenDriver) {
         driver = givenDriver; /*stores the driver passed into the constructor*/
