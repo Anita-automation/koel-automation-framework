@@ -5,21 +5,26 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class HomePage extends BasePage {
+public class HomePage extends BasePage { /*HomePage is a child of BasePage.
+It inherits: driver wait and actions and helper methods*/
+
 
     public HomePage(WebDriver givenDriver) {
-        super(givenDriver);
+        super(givenDriver); /*the constructor for home page, when create home page object, pass driver into it, connects home page to the driver*/
     }
 
-    // Existing locator
+    // locator, tells selenium how to find avatar on the page
     By userAvatarIcon = By.cssSelector("img.avatar");
 
+    //and the method for it, uses find element from BasePage, waits until it becomes visible, retuns the avator elemnt
     public WebElement getUserAvatar() {
         return findElement(userAvatarIcon);
     }
 
+    //locator
     By playerFooter = By.cssSelector("footer.player");
 
+    //method
     public void hoverOverPlayer() {
         hoverOver(playerFooter);
     }
