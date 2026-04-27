@@ -25,7 +25,7 @@ public class LoginTests extends BaseTest {
 
         loginPage.provideEmail("dfaf@gmail.com")
                 .providePassword("AnitaAnita1029")
-                .clickSubmit() ffff
+                .clickSubmit();
 
         Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }
