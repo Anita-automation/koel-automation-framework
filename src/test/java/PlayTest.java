@@ -17,6 +17,7 @@ public class PlayTest extends BaseTest{
 
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilLoaded();
+        dsfasfasas
 
         // Interact with the player using HomePage methods
         homePage.hoverOverPlayer();
