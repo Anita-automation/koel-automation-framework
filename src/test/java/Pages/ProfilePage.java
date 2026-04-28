@@ -9,6 +9,13 @@ public class ProfilePage extends BasePage{
     public ProfilePage(WebDriver driver) {
         super(driver);
     }
+    //This is the constructor for ProfilePage.
+    //
+    //When you write new ProfilePage(driver) in a test, this runs.
+    //
+    //It calls super(driver), which means:
+    //
+    //“Send this driver to BasePage so it can set everything up.”
 
     // Locators
     private By avatarIcon = By.cssSelector("img.avatar");
@@ -17,7 +24,15 @@ public class ProfilePage extends BasePage{
     private By saveButton = By.cssSelector("button.btn-submit");
     private By profileNameDisplay = By.cssSelector("a.view-profile > span");
 
-    // Navigate to profile
+
+    //METHODS
+    // Navigate to profile, This method opens the profile page.
+    //
+    //It waits until the avatar icon is clickable.
+    //
+    //Then it clicks it.
+    //
+    //That action opens the profile/settings area
     public void openProfile() {
         waitForClickable(avatarIcon).click();
     }
@@ -41,7 +56,7 @@ public class ProfilePage extends BasePage{
         }
     }
 
-    // Utility
+    // Utility. This method creates a random string you can use as a profile name.
     public String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }

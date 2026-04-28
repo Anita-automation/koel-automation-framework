@@ -11,10 +11,12 @@ public class PlaylistPage extends BasePage { //PlaylistPage inherits driver, wai
     //You pass the browser into PlaylistPage → PlaylistPage passes it to BasePage → BasePage sets up wait + actions.
 
     // Locators
-    private By deleteButton = By.cssSelector(".btn-delete-playlist");
+    private By deleteButton = By.cssSelector(".btn-delete-playlist"); //this tells Selenium how to find the elements
     private By successMessage = By.cssSelector("div.success.show");
 
-    // Open playlist by name
+    //METHODS
+
+    // Open playlist by name, click playlist
     public void openPlaylist(String playlistName) {
         By playlist = By.xpath("//a[contains(@class,'playlist') and text()='" + playlistName + "']");
         waitForClickable(playlist).click();
