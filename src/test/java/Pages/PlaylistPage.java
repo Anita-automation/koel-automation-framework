@@ -1,12 +1,14 @@
-package Pages;
+package Pages; //it's in the packaged folder
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PlaylistPage extends BasePage {
+public class PlaylistPage extends BasePage { //PlaylistPage inherits driver, wait, actions, and helper methods from BasePage.
     public PlaylistPage(WebDriver driver) {
         super(driver);
-    }
+    } //the constructor, when you write
+    //PlaylistPage playlist = new PlaylistPage(driver);
+    //You pass the browser into PlaylistPage → PlaylistPage passes it to BasePage → BasePage sets up wait + actions.
 
     // Locators
     private By deleteButton = By.cssSelector(".btn-delete-playlist");

@@ -8,7 +8,10 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver); //this creates a LoginPage object, homepage received this driver
+        //and sends it to basepage, BasePage stores driver, wait, actions
+        //        ↓
+        //HomePage inherits everything from BasePage
         HomePage homePage = new HomePage(driver);
 
         loginPage.provideEmail("anita.surewicz@testpro.io")

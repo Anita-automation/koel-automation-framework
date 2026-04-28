@@ -14,7 +14,7 @@ import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
-public class BaseTest { //starts the class
+public class BaseTest { //starts the class, https://github.com/Test-Pro-Bootcamp/A81-QA-Automation-Framework/pull/21
 
     public static WebDriver driver; //This creates a browser variable that all tests can use. It will hold ChromeDriver once the browser is launched.
     public static String url; //This stores the website address (BaseURL) that your tests will open.
