@@ -53,4 +53,15 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
+
+    @Test
+    public void invalidPasswordShowsErrorState() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.navigateToPage()
+                .provideEmail("anita.surewicz@testpro.io")
+                .providePassword("wrongPassword")
+                .clickSubmit();
+
+        Assert.assertTrue(loginPage.waitForErrorState());
+    }
 }

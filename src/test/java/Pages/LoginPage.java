@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
@@ -20,6 +23,8 @@ public class LoginPage extends BasePage{
     WebElement passwordField;
     @FindBy(css = "button[type='submit']")
     WebElement submitBtn;
+    @FindBy(css = "form[data-testid='login-form']")
+    WebElement loginForm;
 
     public WebElement getPasswordField() {
         return passwordField;
@@ -43,6 +48,15 @@ public class LoginPage extends BasePage{
     public LoginPage clickSubmit() {
         submitBtn.click();
         return this;
+    }
+
+    public boolean isErrorState() {
+        return loginForm.getAttribute("class").contains("error");
+    }
+
+    public boolean waitForErrorState() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        return wait.until(d -> loginForm.getAttribute("class").contains("error"));
     }
 
     /*FULL LOGIN METHOD - shortcut method, can just call loginPage.login(); good if the login details don't change */
