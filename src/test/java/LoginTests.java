@@ -24,9 +24,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginInvalidEmailValidPassword() {
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("dfaf@gmail.com")
+        loginPage.provideEmail("anita.surewicztestpro.io")
                 .providePassword("AnitaAnita1029")
                 .clickSubmit();
 
@@ -39,6 +38,17 @@ public class LoginTests extends BaseTest {
 
         loginPage.provideEmail("anita.surewicz@testpro.io")
                 .providePassword("")
+                .clickSubmit();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
+    }
+
+    @Test
+    public void loginValidEmailInvalidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("anita.surewicz@testpro.io")
+                .providePassword("gfdgsdfgds")
                 .clickSubmit();
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
