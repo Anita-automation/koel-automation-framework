@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class HomePage extends BasePage { /*HomePage is a child of BasePage.
 It inherits: driver wait and actions and helper methods*/
@@ -49,6 +50,12 @@ It inherits: driver wait and actions and helper methods*/
 
     public boolean isSoundBarVisible() {
         return findElement(soundBar).isDisplayed();
+    }
+
+    By logoutBtn = By.cssSelector("a[data-testid='btn-logout']");
+
+    public void verifyLogoutBtnIsVisible() {
+        Assert.assertTrue(driver.findElement(logoutBtn).isDisplayed());
     }
 
 }
