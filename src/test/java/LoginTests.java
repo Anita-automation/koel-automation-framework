@@ -64,4 +64,16 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(loginPage.waitForErrorState());
     }
+
+    @Test
+    public void loginEmptyEmailEmptyPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("anita.surewicz@testpro.io")
+                .providePassword("")
+                .clickSubmit();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
+    }
+
 }
