@@ -76,4 +76,18 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
 
+    @Test
+    public void loginRedirectsToPreviouslySavedPage() {
+        LoginPage loginPage = new LoginPage(driver);
+        driver.get("https://qa.koel.app/#/albums");
+
+        loginPage.provideEmail("anita.surewicz@testpro.io")
+                .providePassword("")
+                .clickSubmit();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#/albums");
+        Assert.assertNotEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/home");
+    }
 }
+
+
