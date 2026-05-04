@@ -2,10 +2,10 @@ import Pages.HomePage;
 import Pages.LoginPage;
 import org.testng.annotations.Test;
 
-public class LogoutTests extends BaseTest{
+public class LogoutTests extends BaseTest {
 
     @Test
-    public void logStudentOutBtnVisible () {
+    public void logStudentOutBtnVisible() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
@@ -15,3 +15,4 @@ public class LogoutTests extends BaseTest{
 
         homePage.verifyLogoutBtnIsVisible();
     }
+}

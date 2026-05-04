@@ -22,7 +22,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginInvalidEmailValidPassword() {
+    public void loginEmailMissingAtSignValidPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.provideEmail("anita.surewicztestpro.io")
@@ -87,6 +87,28 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#/albums");
         Assert.assertNotEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/home");
+    }
+
+    @Test
+    public void loginEmailMissingDotSignValidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("anitasurewicz@testpro.io")
+                .providePassword("AnitaAnita1029")
+                .clickSubmit();
+
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
+    }
+
+    @Test
+    public void loginEmailMissingDomainValidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("anita.surewicz@")
+                .providePassword("AnitaAnita1029")
+                .clickSubmit();
+
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }
 }
 
