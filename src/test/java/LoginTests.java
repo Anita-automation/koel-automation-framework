@@ -14,9 +14,7 @@ public class LoginTests extends BaseTest {
         //HomePage inherits everything from BasePage
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("anita.surewicz@testpro.io")
-                .providePassword("AnitaAnita1029")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
