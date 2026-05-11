@@ -23,9 +23,7 @@ public class LoginTests extends BaseTest {
     public void loginEmailMissingAtSignValidPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("anita.surewicztestpro.io")
-                .providePassword("AnitaAnita1029")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }
@@ -34,9 +32,7 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("anita.surewicz@testpro.io")
-                .providePassword("")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
@@ -45,9 +41,7 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailInvalidPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("anita.surewicz@testpro.io")
-                .providePassword("gfdgsdfgds")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
@@ -55,11 +49,11 @@ public class LoginTests extends BaseTest {
     @Test
     public void invalidPasswordShowsErrorState() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.navigateToPage()
-                .provideEmail("anita.surewicz@testpro.io")
+        loginPage.navigateToPage();
+
+                loginPage.provideEmail("anita.surewicz@testpro.io")
                 .providePassword("wrongPassword")
                 .clickSubmit();
-
         Assert.assertTrue(loginPage.waitForErrorState());
     }
 
@@ -67,9 +61,7 @@ public class LoginTests extends BaseTest {
     public void loginEmptyEmailEmptyPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("anita.surewicz@testpro.io")
-                .providePassword("")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
@@ -79,9 +71,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         driver.get("https://qa.koel.app/#/albums");
 
-        loginPage.provideEmail("anita.surewicz@testpro.io")
-                .providePassword("")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#/albums");
         Assert.assertNotEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/home");
@@ -91,9 +81,7 @@ public class LoginTests extends BaseTest {
     public void loginEmailMissingDotSignValidPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("anitasurewicz@testpro.io")
-                .providePassword("AnitaAnita1029")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }
@@ -102,9 +90,7 @@ public class LoginTests extends BaseTest {
     public void loginEmailMissingDomainValidPassword() {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("anita.surewicz@")
-                .providePassword("AnitaAnita1029")
-                .clickSubmit();
+        loginPage.login();
 
         Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }

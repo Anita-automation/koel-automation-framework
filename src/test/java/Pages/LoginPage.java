@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -57,6 +58,11 @@ public class LoginPage extends BasePage{
     public boolean waitForErrorState() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         return wait.until(d -> loginForm.getAttribute("class").contains("error"));
+    }
+
+    public void waitUntilLoginPageVisible() {
+        wait.until(ExpectedConditions.visibilityOf(emailField));
+
     }
 
     /*FULL LOGIN METHOD - shortcut method, can just call loginPage.login(); good if the login details don't change */

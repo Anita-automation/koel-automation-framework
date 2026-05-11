@@ -58,4 +58,8 @@ It inherits: driver wait and actions and helper methods*/
         Assert.assertTrue(driver.findElement(logoutBtn).isDisplayed());
     }
 
+    public LoginPage clickLogOutBtn() {
+        findElement(logoutBtn).click();
+        return new LoginPage(driver);}
+
 }
