@@ -1,5 +1,6 @@
 import Pages.HomePage;
 import Pages.LoginPage;
+import Pages.ProfilePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -51,5 +52,23 @@ public class LogoutTests extends BaseTest { //class called LogoutTests that hold
         Assert.assertEquals("https://qa.koel.app/", driver.getCurrentUrl());
         // Check that the current URL is exactly https://qa.koel.app/.
         //If it’s different, the test fails.
+    }
+
+    @Test
+    public void LogoutAfterPasswordUpdate() {
+        LoginPage loginPage = new LoginPage(driver); //create a LoginPage object and give it a browser
+        HomePage homePage = new HomePage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+
+        loginPage.login();
+
+        homePage.openProfile();
+
+        profilePage.updatePassword("AnitaAnita1030@@", "AnitaAnita1030@@");
+
+        LoginPage loginPageAfterLogout = homePage.clickLogOutBtn();
+
+        loginPageAfterLogout.waitUntilLoginPageVisible();
+
     }
 }

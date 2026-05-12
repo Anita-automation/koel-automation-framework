@@ -23,7 +23,7 @@ public class ProfilePage extends BasePage{
     private By profileNameField = By.cssSelector("[name='name']");
     private By saveButton = By.cssSelector("button.btn-submit");
     private By profileNameDisplay = By.cssSelector("a.view-profile > span");
-
+    private By newPasswordField = By.cssSelector("[name='new_password']");
 
     //METHODS
     // Navigate to profile, This method opens the profile page.
@@ -46,6 +46,14 @@ public class ProfilePage extends BasePage{
         findElement(profileNameField).sendKeys(newName);
 
         waitForClickable(saveButton).click();
+    }
+
+    public void updatePassword(String currentPass, String newPass) {
+        waitForVisible(currentPasswordField).clear();
+        findElement(currentPasswordField).sendKeys(currentPass);
+
+        waitForVisible(newPasswordField).clear();
+        findElement(newPasswordField).sendKeys(newPass);
     }
 
     // Assertion helper

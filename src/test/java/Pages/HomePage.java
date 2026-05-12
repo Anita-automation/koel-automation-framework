@@ -38,7 +38,7 @@ It inherits: driver wait and actions and helper methods*/
     By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
     By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
     By soundBar = By.xpath("//img[@alt='Sound bars']");
-
+    By profileMenu = By.cssSelector("a[title='View/edit user profile']");
     // NEW METHODS
     public void clickPlayNextSong() {
         findElement(playNextSongBtn).click();
@@ -56,6 +56,10 @@ It inherits: driver wait and actions and helper methods*/
 
     public void verifyLogoutBtnIsVisible() {
         Assert.assertTrue(driver.findElement(logoutBtn).isDisplayed());
+    }
+
+    public void openProfile() {
+        waitForClickable(profileMenu).click();
     }
 
     public LoginPage clickLogOutBtn() {

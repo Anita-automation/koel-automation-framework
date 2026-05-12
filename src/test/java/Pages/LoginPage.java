@@ -68,7 +68,7 @@ public class LoginPage extends BasePage{
     /*FULL LOGIN METHOD - shortcut method, can just call loginPage.login(); good if the login details don't change */
     public void login() {
         provideEmail("anita.surewicz@testpro.io");
-        providePassword("AnitaAnita1029");
+        providePassword("AnitaAnita1030@@");
         clickSubmit();
     }
 }
