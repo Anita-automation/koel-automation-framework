@@ -94,4 +94,26 @@ public class LogoutTests extends BaseTest { //class called LogoutTests that hold
         );
     }
 
+    @Test
+    public void userCannotReenterAppAfterLogout() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver); //created two page object
+
+      loginPage.login();
+
+        homePage.clickLogOutBtn() //clicks the logout button
+                //the method returns a LoginPage, so have a LoginPage object again
+                .waitUntilLoginPageVisible(); //waits until the LoginPage is fully loaded
+
+        driver.navigate().back(); //standard Selenium command that presses the back button
+
+        Assert.assertTrue(
+                loginPage.isLoginFormVisible(),
+                "User should remain on Login page after pressing Back"
+        );
+
+
+
+    }
+
 }

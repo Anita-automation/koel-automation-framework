@@ -65,6 +65,10 @@ public class LoginPage extends BasePage{
 
     }
 
+    public boolean isLoginFormVisible() {
+        return loginForm.isDisplayed();
+    }
+
     /*FULL LOGIN METHOD - shortcut method, can just call loginPage.login(); good if the login details don't change */
     public void login() {
         provideEmail("anita.surewicz@testpro.io");

@@ -4,7 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage { /*HomePage is a child of BasePage.
 It inherits: driver wait and actions and helper methods*/
@@ -65,6 +68,8 @@ It inherits: driver wait and actions and helper methods*/
     }
 
     public LoginPage clickLogOutBtn() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //this is a variable - needs wait title
+        wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
         findElement(logoutBtn).click();
         return new LoginPage(driver);}
 
