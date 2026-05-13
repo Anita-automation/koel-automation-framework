@@ -1,6 +1,7 @@
 import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.ProfilePage;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -71,4 +72,26 @@ public class LogoutTests extends BaseTest { //class called LogoutTests that hold
         loginPageAfterLogout.waitUntilLoginPageVisible();
 
     }
+
+    @Test
+    public void LogoutBtnNextToProfileBtn() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.login();
+
+        WebElement profile = homePage.getProfileButton();
+        WebElement logout = homePage.getLogoutButton(); //this finds the buttons - is connected to the HomePage
+
+        int profileX = profile.getLocation().getX();
+        int logoutX =logout.getLocation().getX(); //getLocation gives its position, getX is how far it is from the
+        //left edge, it stores this number or integer in a variables called logoutX and logoutX
+
+        Assert.assertTrue(
+                logoutX > profileX, "Logout button should appear to the right of the Profile button"
+                //logoutX is greater than profileX, which means it's more to the right, message will appear only
+                //if the test fails
+        );
+    }
+
 }
