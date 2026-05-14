@@ -67,6 +67,25 @@ It inherits: driver wait and actions and helper methods*/
         waitForClickable(profileMenu).click();
     }
 
+    public boolean isRecentlyPlayedVisible() {
+        return driver.findElement(recentlyPlayedSection).isDisplayed();
+
+    }
+
+    By recentlyPlayedSection = By.cssSelector("section.recent h1");
+
+    public boolean isViewAllVisible() {
+        return driver.findElement(viewAllButton).isDisplayed();
+    }
+
+    By viewAllButton = By.cssSelector("[data-testid='home-view-all-recently-played-btn']");
+
+    public boolean isRecentlyAddedVisible() {
+        return driver.findElement(recentlyAdded).isDisplayed();
+    }
+
+    By recentlyAdded = By.xpath("//h1[text()='Recently Added']");
+
     public LoginPage clickLogOutBtn() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //this is a variable - needs wait title
         wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
@@ -79,6 +98,14 @@ It inherits: driver wait and actions and helper methods*/
 
     public WebElement getLogoutButton() {
         return driver.findElement(logoutBtn);
+    }
+
+    public WebElement getRecentlyPlayedSection() {
+        return driver.findElement(recentlyPlayedSection);
+    }
+
+    public WebElement getViewAllButton() {
+        return driver.findElement(viewAllButton);
     }
 
 }
