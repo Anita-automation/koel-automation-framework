@@ -34,4 +34,18 @@ public class RecentlyPlayedTests extends BaseTest {
         assertTrue(shuffle.isDisplayed());
         assertTrue(download.isDisplayed());
     }
+
+    @Test
+    public void downloadAndShuffleIconsVisible() {
+        LoginPage loginPage = new LoginPage(driver); //create a LoginPage object and give it a browser
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.login();
+
+        homePage.hoverFirstAlbum();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test='album-card']")));
+
+        assertTrue(homePage.isShuffleVisible());
+        assertTrue(homePage.isDownloadVisible());
+    }
 }

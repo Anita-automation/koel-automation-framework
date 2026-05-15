@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -43,7 +44,9 @@ It inherits: driver wait and actions and helper methods*/
     By soundBar = By.xpath("//img[@alt='Sound bars']");
     By profileMenu = By.cssSelector("a[title='View/edit user profile']");
     By logoutBtn = By.cssSelector("a[data-testid='btn-logout']");
-
+    By albumCard = By.cssSelector("[data-test='album-card']");
+    By shuffleIcon = By.cssSelector(".fa-random");
+    By downloadIcon = By.cssSelector(".fa-download");
 
     // NEW METHODS
     public void clickPlayNextSong() {
@@ -108,6 +111,23 @@ It inherits: driver wait and actions and helper methods*/
 
     public WebElement getViewAllButton() {
         return driver.findElement(viewAllButton);
+    }
+
+    public void hoverFirstAlbum() {
+        WebElement album = wait.until(ExpectedConditions.visibilityOfElementLocated(albumCard));
+        actions.moveToElement(album).perform();
+    }
+
+    public boolean isShuffleVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(shuffleIcon)).isDisplayed();
+
+    }
+
+    public boolean isDownloadVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(downloadIcon)).isDisplayed();
+
     }
 
 }
