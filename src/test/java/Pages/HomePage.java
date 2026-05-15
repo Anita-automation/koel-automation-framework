@@ -44,6 +44,7 @@ It inherits: driver wait and actions and helper methods*/
     By profileMenu = By.cssSelector("a[title='View/edit user profile']");
     By logoutBtn = By.cssSelector("a[data-testid='btn-logout']");
 
+
     // NEW METHODS
     public void clickPlayNextSong() {
         findElement(playNextSongBtn).click();
@@ -59,8 +60,9 @@ It inherits: driver wait and actions and helper methods*/
 
 
 
-    public void verifyLogoutBtnIsVisible() {
-        Assert.assertTrue(driver.findElement(logoutBtn).isDisplayed());
+    public boolean verifyLogoutBtnIsVisible() {
+
+        return driver.findElement(logoutBtn).isDisplayed();
     }
 
     public void openProfile() {

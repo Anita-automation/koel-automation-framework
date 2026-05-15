@@ -13,6 +13,7 @@
             <class name="PlaylistTest"/>
             <class name="LogoutTests"/>
             <class name="HomepageTests"/>
+            <class name="RecentlyPlayedTests"/>
         </classes>
     </test>
 </suite>
