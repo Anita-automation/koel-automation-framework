@@ -47,10 +47,20 @@ It inherits: driver wait and actions and helper methods*/
     By albumCard = By.cssSelector("[data-test='album-card']");
     By shuffleIcon = By.cssSelector(".fa-random");
     By downloadIcon = By.cssSelector(".fa-download");
+    By searchField = By.cssSelector("input[name='q']");
+    By homeBtn = By.cssSelector("a[href='#!/home']");
+    By queueBtn = By.cssSelector("a[href='#!/queue']");
+    By allSongsBtn = By.cssSelector("a[href='#!/songs']");
+    By albumsBtn = By.cssSelector("a[href='#!/albums']");
+            By artistsBtn = By.cssSelector("a[href='#!/artists']");
 
     // NEW METHODS
     public void clickPlayNextSong() {
         findElement(playNextSongBtn).click();
+    }
+
+    public void clickSearchField() {
+        findElement(searchField).click();
     }
 
     public void clickPlayButton() {
@@ -61,7 +71,25 @@ It inherits: driver wait and actions and helper methods*/
         return findElement(soundBar).isDisplayed();
     }
 
+    public boolean isHomeBtnVisible() {
+        return findElement(homeBtn).isDisplayed();
+    }
 
+    public boolean isQueueBtnVisible() {
+        return findElement(queueBtn).isDisplayed();
+    }
+
+    public boolean isAllSongsBtnVisible() {
+        return findElement(allSongsBtn).isDisplayed();
+    }
+
+    public boolean isAlbumsBtnVisible() {
+        return findElement(albumsBtn).isDisplayed();
+    }
+
+    public boolean isArtistsBtnVisible() {
+        return findElement(artistsBtn).isDisplayed();
+    }
 
     public boolean verifyLogoutBtnIsVisible() {
 

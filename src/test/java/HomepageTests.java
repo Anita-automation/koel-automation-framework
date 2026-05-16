@@ -47,7 +47,19 @@ public class HomepageTests extends BaseTest{
     }
 
     @Test
-    public void recentlyAddedSongsDisplayAlbums() {
+    public void musicPanelFields() {
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
+        loginPage.login();
+
+        homePage.isHomeBtnVisible();
+        homePage.isQueueBtnVisible();
+        homePage.isAllSongsBtnVisible();
+        homePage.isAlbumsBtnVisible();
+        homePage.isArtistsBtnVisible();
     }
+
+
+
 }
