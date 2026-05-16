@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -53,11 +54,41 @@ It inherits: driver wait and actions and helper methods*/
     By allSongsBtn = By.cssSelector("a[href='#!/songs']");
     By albumsBtn = By.cssSelector("a[href='#!/albums']");
             By artistsBtn = By.cssSelector("a[href='#!/artists']");
+    By createNewPlaylistBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
+    By newPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+    By newSmartPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-smart']");
 
     // NEW METHODS
+
+
+    public void clickCreateNewPlaylist() {
+        WebElement btn = findElement(createNewPlaylistBtn);
+
+        // scroll sidebar into view
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
+
+        // wait until clickable
+        wait.until(ExpectedConditions.elementToBeClickable(createNewPlaylistBtn));
+
+        // force click
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+    }
+
+    public boolean isNewPlaylistVisible() {
+        return findElement(newPlaylist).isDisplayed();
+    }
+
+    public boolean isNewSmartPlaylistVisible() {
+        return findElement(newSmartPlaylist).isDisplayed();
+    }
+
+
+
     public void clickPlayNextSong() {
         findElement(playNextSongBtn).click();
     }
+
+
 
     public void clickSearchField() {
         findElement(searchField).click();
@@ -74,6 +105,7 @@ It inherits: driver wait and actions and helper methods*/
     public boolean isHomeBtnVisible() {
         return findElement(homeBtn).isDisplayed();
     }
+
 
     public boolean isQueueBtnVisible() {
         return findElement(queueBtn).isDisplayed();

@@ -1,7 +1,10 @@
 package Pages; //it's in the packaged folder
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PlaylistPage extends BasePage { //PlaylistPage inherits driver, wait, actions, and helper methods from BasePage.
     public PlaylistPage(WebDriver driver) {
@@ -15,6 +18,11 @@ public class PlaylistPage extends BasePage { //PlaylistPage inherits driver, wai
     private By successMessage = By.cssSelector("div.success.show");
 
     //METHODS
+
+
+
+
+
 
     // Open playlist by name, click playlist
     public void openPlaylist(String playlistName) {
