@@ -47,6 +47,19 @@ public class PlaylistTest extends BaseTest{
 
         homePage.isFavoritesBtnVisible();
         homePage.isRecentlyPlayedBtnVisible();
+
     }
+
+    @Test
+    public void playlistBtnsAreNotVisible() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login();
+        HomePage homePage = new HomePage(driver);
+        homePage.AssertPlaylistBtnsNotPresent("Smart playlists");
+        homePage.AssertPlaylistBtnsNotPresent("User's created playlists");
+    }
+
+
+
 }
 

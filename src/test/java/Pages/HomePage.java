@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.List;
+
+import static org.testng.Assert.assertTrue;
 
 public class HomePage extends BasePage { /*HomePage is a child of BasePage.
 It inherits: driver wait and actions and helper methods*/
@@ -68,6 +71,16 @@ It inherits: driver wait and actions and helper methods*/
 
     public boolean isRecentlyPlayedBtnVisible() {
         return findElement(RecentlyPlayedBtn).isDisplayed();
+    }
+
+    public void AssertPlaylistBtnsNotPresent(String playlistName) {
+        List<WebElement> elements = driver.findElements(
+
+                By.xpath("//*[contains(normalize-space(), \"" + playlistName + "\")]")
+        );
+        assertTrue(elements.isEmpty(),
+                "Playlist '" + playlistName + "' SHOULD exist but was NOT found.");
+
     }
 
 
