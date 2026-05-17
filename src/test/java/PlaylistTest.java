@@ -38,5 +38,15 @@ public class PlaylistTest extends BaseTest{
 
 
     }
+
+    @Test
+    public void areBtnsVisible() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login();
+        HomePage homePage = new HomePage(driver);
+
+        homePage.isFavoritesBtnVisible();
+        homePage.isRecentlyPlayedBtnVisible();
+    }
 }
 

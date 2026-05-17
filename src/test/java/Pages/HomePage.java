@@ -57,8 +57,18 @@ It inherits: driver wait and actions and helper methods*/
     By createNewPlaylistBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
     By newPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     By newSmartPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-smart']");
+    By favortiesBtn = By.cssSelector("a[href='#!/favorites']");
+    By RecentlyPlayedBtn = By.cssSelector("a[href='#!/recently-played']");
 
     // NEW METHODS
+
+    public boolean isFavoritesBtnVisible() {
+        return findElement(favortiesBtn).isDisplayed();
+    }
+
+    public boolean isRecentlyPlayedBtnVisible() {
+        return findElement(RecentlyPlayedBtn).isDisplayed();
+    }
 
 
     public void clickCreateNewPlaylist() {
