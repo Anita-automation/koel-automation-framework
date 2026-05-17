@@ -1,8 +1,12 @@
+import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.ProfilePage;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class ProfileTest extends BaseTest{
+import static org.testng.Assert.assertTrue;
+
+public class ProfileTest extends BaseTest {
 
     @Test
     public void changeProfileName() {
@@ -21,6 +25,22 @@ public class ProfileTest extends BaseTest{
 
         profile.verifyProfileNameUpdated(newName);
     }
-}
 
+    @Test
+    public void profilePageUrlChangesButUiDoesNotLoad() {
+        LoginPage loginPage = new LoginPage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.login();
+        homePage.pofileMenuClickable();
+
+        assertTrue(driver.getCurrentUrl().contains("/profile"),
+                "URL did not navigate to the profile page.");
+
+        By currentPasswordField = By.cssSelector("[name='current_password']");
+        assertTrue(driver.findElements(currentPasswordField).isEmpty(),
+                "Profile UI loaded, but it should not have.");
+    }
+}
 

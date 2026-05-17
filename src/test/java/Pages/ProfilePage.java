@@ -26,6 +26,12 @@ public class ProfilePage extends BasePage{
     private By newPasswordField = By.cssSelector("[name='new_password']");
 
     //METHODS
+
+    public boolean isProfileHeaderVisible() {
+        return findElement(profileNameField).isDisplayed();
+    }
+
+
     // Navigate to profile, This method opens the profile page.
     //
     //It waits until the avatar icon is clickable.

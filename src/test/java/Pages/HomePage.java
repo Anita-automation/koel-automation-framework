@@ -73,6 +73,11 @@ It inherits: driver wait and actions and helper methods*/
         return findElement(RecentlyPlayedBtn).isDisplayed();
     }
 
+    public void pofileMenuClickable() {
+        wait.until(ExpectedConditions.elementToBeClickable(profileMenu)).click();
+         //no return, just perform the action
+    }
+
     public void AssertPlaylistBtnsNotPresent(String playlistName) {
         List<WebElement> elements = driver.findElements(
 
