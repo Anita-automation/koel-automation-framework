@@ -62,8 +62,21 @@ It inherits: driver wait and actions and helper methods*/
     By newSmartPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-smart']");
     By favortiesBtn = By.cssSelector("a[href='#!/favorites']");
     By RecentlyPlayedBtn = By.cssSelector("a[href='#!/recently-played']");
-
+    By aboutBtn = By.cssSelector("button.about.control i.fa-info-circle");
+    By popUp = By.cssSelector("div[data-testid='about-modal']");
     // NEW METHODS
+
+    public boolean isPopUpVisible() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(popUp)).isDisplayed();
+    }
+
+    public boolean isAboutBtnVisible() {
+        return findElement(aboutBtn).isDisplayed();
+    }
+
+    public void isAboutBtnVisibleAndClickable() {
+        wait.until(ExpectedConditions.elementToBeClickable(aboutBtn)).click();
+    }
 
     public boolean isFavoritesBtnVisible() {
         return findElement(favortiesBtn).isDisplayed();

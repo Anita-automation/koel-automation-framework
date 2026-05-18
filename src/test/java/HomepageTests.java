@@ -60,6 +60,24 @@ public class HomepageTests extends BaseTest{
         homePage.isArtistsBtnVisible();
     }
 
+@Test
+    public void isAboutBtnVisibleAndClickable() {
+    HomePage homePage = new HomePage(driver);
+    LoginPage loginPage = new LoginPage(driver);
 
+    loginPage.login();
+
+    homePage.isAboutBtnVisibleAndClickable();
+}
+
+@Test
+    public void isPopUpVisible() {
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+        homePage.isAboutBtnVisibleAndClickable();
+        homePage.isPopUpVisible();
+}
 
 }

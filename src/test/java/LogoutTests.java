@@ -111,9 +111,24 @@ public class LogoutTests extends BaseTest { //class called LogoutTests that hold
                 loginPage.isLoginFormVisible(),
                 "User should remain on Login page after pressing Back"
         );
+    }
 
+    @Test
+    public void logoutDoesNotRedirectToRootURL() {
+        LoginPage loginPage = new LoginPage(driver); //create a LoginPage object and give it a browser
+        HomePage homePage = new HomePage(driver);
 
+        loginPage.login();
 
+        //a variable called loginPageAfterLogout//
+        LoginPage loginPageAfterLogout = homePage.clickLogOutBtn();
+        //click logout vis the Homepage, this returns a new LoginPage object stored in loginPageAfterLogout
+        loginPageAfterLogout.waitUntilLoginPageVisible();
+
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println("URL after logout: " + currentUrl);
+
+        Assert.assertNotEquals("https://qa.koel.app/", currentUrl);
     }
 
 }
