@@ -22,61 +22,73 @@ It inherits: driver wait and actions and helper methods*/
         super(givenDriver); /*the constructor for home page, when create home page object, pass driver into it, connects home page to the driver*/
     }
 
-    // locator, tells selenium how to find avatar on the page
-    By userAvatarIcon = By.cssSelector("img.avatar");
-
-    //and the method for it, uses find element from BasePage, waits until it becomes visible, retuns the avator elemnt
-    public WebElement getUserAvatar() {
-        return findElement(userAvatarIcon);
-    }
-
-    //locator
-    By playerFooter = By.cssSelector("footer.player");
-
-    //method
-    public void hoverOverPlayer() {
-        hoverOver(playerFooter);
-    }
-
     public void waitUntilLoaded() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(userAvatarIcon));
     }
 
-    // NEW LOCATORS
-    By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
-    By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
-    By soundBar = By.xpath("//img[@alt='Sound bars']");
-    By profileMenu = By.cssSelector("a[title='View/edit user profile']");
-    By logoutBtn = By.cssSelector("a[data-testid='btn-logout']");
-    By albumCard = By.cssSelector("[data-test='album-card']");
-    By shuffleIcon = By.cssSelector(".fa-random");
-    By downloadIcon = By.cssSelector(".fa-download");
-    By searchField = By.cssSelector("input[name='q']");
+    //--------------
+    //HEADER SECTION
+    //--------------
+
+    //LOCATORS - tells selenium how to find elements on a page
+
+    private By userAvatarIcon = By.cssSelector("img.avatar");
+    private By profileMenu = By.cssSelector("a[title='View/edit user profile']");
+    private By logoutBtn = By.cssSelector("a[data-testid='btn-logout']");
+
+    //METHODS - uses find element from BasePage, waits until it becomes visible, and returns it
+
+    public WebElement getUserAvatar() {
+        return findElement(userAvatarIcon);
+    }
+
+    public void openProfile() {
+        waitForClickable(profileMenu).click();
+    }
+
+    public LoginPage clickLogOutBtn() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //this is a variable - needs wait title
+        wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
+        findElement(logoutBtn).click();
+        return new LoginPage(driver);}
+
+    public void pofileMenuClickable() {
+        wait.until(ExpectedConditions.elementToBeClickable(profileMenu)).click();
+        //no return, just perform the action
+    }
+
+    public boolean verifyLogoutBtnIsVisible() {
+
+        return driver.findElement(logoutBtn).isDisplayed();
+    }
+
+    public WebElement getProfileButton() {
+        return driver.findElement(profileMenu);
+    }
+
+    public WebElement getLogoutButton() {
+        return driver.findElement(logoutBtn);
+    }
+
+
+    //--------------
+    //SIDEBAR SECTION
+    //--------------
+
+    //LOCATORS
+
     By homeBtn = By.cssSelector("a[href='#!/home']");
     By queueBtn = By.cssSelector("a[href='#!/queue']");
     By allSongsBtn = By.cssSelector("a[href='#!/songs']");
     By albumsBtn = By.cssSelector("a[href='#!/albums']");
-            By artistsBtn = By.cssSelector("a[href='#!/artists']");
+    By artistsBtn = By.cssSelector("a[href='#!/artists']");
+    By favortiesBtn = By.cssSelector("a[href='#!/favorites']");
+    By RecentlyPlayedBtn = By.cssSelector("a[href='#!/recently-played']");
     By createNewPlaylistBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
     By newPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     By newSmartPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-smart']");
-    By favortiesBtn = By.cssSelector("a[href='#!/favorites']");
-    By RecentlyPlayedBtn = By.cssSelector("a[href='#!/recently-played']");
-    By aboutBtn = By.cssSelector("button.about.control i.fa-info-circle");
-    By popUp = By.cssSelector("div[data-testid='about-modal']");
-    // NEW METHODS
 
-    public boolean isPopUpVisible() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(popUp)).isDisplayed();
-    }
-
-    public boolean isAboutBtnVisible() {
-        return findElement(aboutBtn).isDisplayed();
-    }
-
-    public void isAboutBtnVisibleAndClickable() {
-        wait.until(ExpectedConditions.elementToBeClickable(aboutBtn)).click();
-    }
+    //METHODS
 
     public boolean isFavoritesBtnVisible() {
         return findElement(favortiesBtn).isDisplayed();
@@ -85,22 +97,6 @@ It inherits: driver wait and actions and helper methods*/
     public boolean isRecentlyPlayedBtnVisible() {
         return findElement(RecentlyPlayedBtn).isDisplayed();
     }
-
-    public void pofileMenuClickable() {
-        wait.until(ExpectedConditions.elementToBeClickable(profileMenu)).click();
-         //no return, just perform the action
-    }
-
-    public void AssertPlaylistBtnsNotPresent(String playlistName) {
-        List<WebElement> elements = driver.findElements(
-
-                By.xpath("//*[contains(normalize-space(), \"" + playlistName + "\")]")
-        );
-        assertTrue(elements.isEmpty(),
-                "Playlist '" + playlistName + "' SHOULD exist but was NOT found.");
-
-    }
-
 
     public void clickCreateNewPlaylist() {
         WebElement btn = findElement(createNewPlaylistBtn);
@@ -123,30 +119,9 @@ It inherits: driver wait and actions and helper methods*/
         return findElement(newSmartPlaylist).isDisplayed();
     }
 
-
-
-    public void clickPlayNextSong() {
-        findElement(playNextSongBtn).click();
-    }
-
-
-
-    public void clickSearchField() {
-        findElement(searchField).click();
-    }
-
-    public void clickPlayButton() {
-        findElement(playBtn).click();
-    }
-
-    public boolean isSoundBarVisible() {
-        return findElement(soundBar).isDisplayed();
-    }
-
     public boolean isHomeBtnVisible() {
         return findElement(homeBtn).isDisplayed();
     }
-
 
     public boolean isQueueBtnVisible() {
         return findElement(queueBtn).isDisplayed();
@@ -164,54 +139,43 @@ It inherits: driver wait and actions and helper methods*/
         return findElement(artistsBtn).isDisplayed();
     }
 
-    public boolean verifyLogoutBtnIsVisible() {
+    public void AssertPlaylistBtnsNotPresent(String playlistName) {
+        List<WebElement> elements = driver.findElements(
 
-        return driver.findElement(logoutBtn).isDisplayed();
+                By.xpath("//*[contains(normalize-space(), \"" + playlistName + "\")]")
+        );
+        assertTrue(elements.isEmpty(),
+                "Playlist '" + playlistName + "' SHOULD exist but was NOT found.");
     }
 
-    public void openProfile() {
-        waitForClickable(profileMenu).click();
+    //--------------
+    //PLAYER SECTION
+    //--------------
+
+    //LOCATORS
+
+    By playerFooter = By.cssSelector("footer.player");
+    By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
+    By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
+    By soundBar = By.xpath("//img[@alt='Sound bars']");
+    By albumCard = By.cssSelector("[data-test='album-card']");
+    By shuffleIcon = By.cssSelector(".fa-random");
+    By downloadIcon = By.cssSelector(".fa-download");
+
+    //METHODS
+
+    public void hoverOverPlayer() {
+        hoverOver(playerFooter);
+    }
+    public void clickPlayNextSong() {
+        findElement(playNextSongBtn).click();
+    }
+    public void clickPlayButton() {
+        findElement(playBtn).click();
     }
 
-    public boolean isRecentlyPlayedVisible() {
-        return driver.findElement(recentlyPlayedSection).isDisplayed();
-
-    }
-
-    By recentlyPlayedSection = By.cssSelector("section.recent h1");
-
-    public boolean isViewAllVisible() {
-        return driver.findElement(viewAllButton).isDisplayed();
-    }
-
-    By viewAllButton = By.cssSelector("[data-testid='home-view-all-recently-played-btn']");
-
-    public boolean isRecentlyAddedVisible() {
-        return driver.findElement(recentlyAdded).isDisplayed();
-    }
-
-    By recentlyAdded = By.xpath("//h1[text()='Recently Added']");
-
-    public LoginPage clickLogOutBtn() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //this is a variable - needs wait title
-        wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
-        findElement(logoutBtn).click();
-        return new LoginPage(driver);}
-
-    public WebElement getProfileButton() {
-        return driver.findElement(profileMenu);
-    }
-
-    public WebElement getLogoutButton() {
-        return driver.findElement(logoutBtn);
-    }
-
-    public WebElement getRecentlyPlayedSection() {
-        return driver.findElement(recentlyPlayedSection);
-    }
-
-    public WebElement getViewAllButton() {
-        return driver.findElement(viewAllButton);
+    public boolean isSoundBarVisible() {
+        return findElement(soundBar).isDisplayed();
     }
 
     public void hoverFirstAlbum() {
@@ -229,6 +193,77 @@ It inherits: driver wait and actions and helper methods*/
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(downloadIcon)).isDisplayed();
 
+    }
+
+    //--------------
+    //SEARCH SECTION
+    //--------------
+
+    //LOCATORS
+
+    By searchField = By.cssSelector("input[name='q']");
+
+    //METHODS
+
+    public void clickSearchField() {
+        findElement(searchField).click();
+    }
+
+    //--------------
+    //CONTENT SECTION
+    //--------------
+
+    //LOCATORS
+
+    By recentlyPlayedSection = By.cssSelector("section.recent h1");
+    By viewAllButton = By.cssSelector("[data-testid='home-view-all-recently-played-btn']");
+    By recentlyAdded = By.xpath("//h1[text()='Recently Added']");
+
+    //METHODS
+
+    public boolean isRecentlyAddedVisible() {
+        return driver.findElement(recentlyAdded).isDisplayed();
+    }
+
+    public boolean isRecentlyPlayedVisible() {
+        return driver.findElement(recentlyPlayedSection).isDisplayed();
+
+    }
+
+    public boolean isViewAllVisible() {
+        return driver.findElement(viewAllButton).isDisplayed();
+    }
+
+    public WebElement getRecentlyPlayedSection() {
+        return driver.findElement(recentlyPlayedSection);
+    }
+
+    public WebElement getViewAllButton() {
+        return driver.findElement(viewAllButton);
+    }
+
+
+    //--------------
+    //MODALS & POPUPS SECTION
+    //--------------
+
+    //LOCATORS
+
+    By aboutBtn = By.cssSelector("button.about.control i.fa-info-circle");
+    By popUp = By.cssSelector("div[data-testid='about-modal']");
+
+    //METHODS
+
+    public boolean isPopUpVisible() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(popUp)).isDisplayed();
+    }
+
+    public void isAboutBtnVisibleAndClickable() {
+        wait.until(ExpectedConditions.elementToBeClickable(aboutBtn)).click();
+    }
+
+    public boolean isAboutBtnVisible() {
+        return findElement(aboutBtn).isDisplayed();
     }
 
 }
