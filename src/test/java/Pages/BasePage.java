@@ -43,4 +43,13 @@ public class BasePage { /*starts the BasePage class, every page will extend it*/
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public boolean isVisible(By locator) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

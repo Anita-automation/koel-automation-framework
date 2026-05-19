@@ -23,7 +23,7 @@ It inherits: driver wait and actions and helper methods*/
     }
 
     public void waitUntilLoaded() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(userAvatarIcon));
+        waitForVisible(userAvatarIcon);
     }
 
     //--------------
@@ -47,18 +47,15 @@ It inherits: driver wait and actions and helper methods*/
     }
 
     public LoginPage clickLogOutBtn() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //this is a variable - needs wait title
-        wait.until(ExpectedConditions.elementToBeClickable(logoutBtn));
-        findElement(logoutBtn).click();
+        waitForClickable(logoutBtn).click();
         return new LoginPage(driver);}
 
-    public void pofileMenuClickable() {
-        wait.until(ExpectedConditions.elementToBeClickable(profileMenu)).click();
+    public void profileMenuClickable() {
+        waitForClickable(profileMenu).click();
         //no return, just perform the action
     }
 
     public boolean verifyLogoutBtnIsVisible() {
-
         return driver.findElement(logoutBtn).isDisplayed();
     }
 
@@ -77,16 +74,16 @@ It inherits: driver wait and actions and helper methods*/
 
     //LOCATORS
 
-    By homeBtn = By.cssSelector("a[href='#!/home']");
-    By queueBtn = By.cssSelector("a[href='#!/queue']");
-    By allSongsBtn = By.cssSelector("a[href='#!/songs']");
-    By albumsBtn = By.cssSelector("a[href='#!/albums']");
-    By artistsBtn = By.cssSelector("a[href='#!/artists']");
-    By favortiesBtn = By.cssSelector("a[href='#!/favorites']");
-    By RecentlyPlayedBtn = By.cssSelector("a[href='#!/recently-played']");
-    By createNewPlaylistBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
-    By newPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
-    By newSmartPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-smart']");
+    private By homeBtn = By.cssSelector("a[href='#!/home']");
+    private By queueBtn = By.cssSelector("a[href='#!/queue']");
+    private By allSongsBtn = By.cssSelector("a[href='#!/songs']");
+    private By albumsBtn = By.cssSelector("a[href='#!/albums']");
+    private By artistsBtn = By.cssSelector("a[href='#!/artists']");
+    private By favortiesBtn = By.cssSelector("a[href='#!/favorites']");
+    private By RecentlyPlayedBtn = By.cssSelector("a[href='#!/recently-played']");
+    private By createNewPlaylistBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
+    private By newPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+    private By newSmartPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-smart']");
 
     //METHODS
 
@@ -105,7 +102,7 @@ It inherits: driver wait and actions and helper methods*/
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
 
         // wait until clickable
-        wait.until(ExpectedConditions.elementToBeClickable(createNewPlaylistBtn));
+        waitForClickable(createNewPlaylistBtn).click();
 
         // force click
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
@@ -154,13 +151,13 @@ It inherits: driver wait and actions and helper methods*/
 
     //LOCATORS
 
-    By playerFooter = By.cssSelector("footer.player");
-    By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
-    By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
-    By soundBar = By.xpath("//img[@alt='Sound bars']");
-    By albumCard = By.cssSelector("[data-test='album-card']");
-    By shuffleIcon = By.cssSelector(".fa-random");
-    By downloadIcon = By.cssSelector(".fa-download");
+    private By playerFooter = By.cssSelector("footer.player");
+    private By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
+    private By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
+    private By soundBar = By.xpath("//img[@alt='Sound bars']");
+    private By albumCard = By.cssSelector("[data-test='album-card']");
+    private By shuffleIcon = By.cssSelector(".fa-random");
+    private By downloadIcon = By.cssSelector(".fa-download");
 
     //METHODS
 
@@ -180,6 +177,7 @@ It inherits: driver wait and actions and helper methods*/
 
     public void hoverFirstAlbum() {
         WebElement album = wait.until(ExpectedConditions.visibilityOfElementLocated(albumCard));
+        waitForClickable(albumCard).click();
         actions.moveToElement(album).perform();
     }
 
@@ -201,7 +199,7 @@ It inherits: driver wait and actions and helper methods*/
 
     //LOCATORS
 
-    By searchField = By.cssSelector("input[name='q']");
+    private By searchField = By.cssSelector("input[name='q']");
 
     //METHODS
 
@@ -215,9 +213,9 @@ It inherits: driver wait and actions and helper methods*/
 
     //LOCATORS
 
-    By recentlyPlayedSection = By.cssSelector("section.recent h1");
-    By viewAllButton = By.cssSelector("[data-testid='home-view-all-recently-played-btn']");
-    By recentlyAdded = By.xpath("//h1[text()='Recently Added']");
+    private By recentlyPlayedSection = By.cssSelector("section.recent h1");
+    private By viewAllButton = By.cssSelector("[data-testid='home-view-all-recently-played-btn']");
+    private By recentlyAdded = By.xpath("//h1[text()='Recently Added']");
 
     //METHODS
 
@@ -249,8 +247,8 @@ It inherits: driver wait and actions and helper methods*/
 
     //LOCATORS
 
-    By aboutBtn = By.cssSelector("button.about.control i.fa-info-circle");
-    By popUp = By.cssSelector("div[data-testid='about-modal']");
+    private By aboutBtn = By.cssSelector("button.about.control i.fa-info-circle");
+    private By popUp = By.cssSelector("div[data-testid='about-modal']");
 
     //METHODS
 
@@ -259,11 +257,7 @@ It inherits: driver wait and actions and helper methods*/
     }
 
     public void isAboutBtnVisibleAndClickable() {
-        wait.until(ExpectedConditions.elementToBeClickable(aboutBtn)).click();
-    }
-
-    public boolean isAboutBtnVisible() {
-        return findElement(aboutBtn).isDisplayed();
+        waitForClickable(aboutBtn).click();
     }
 
 }

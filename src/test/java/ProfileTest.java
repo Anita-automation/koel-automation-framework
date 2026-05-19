@@ -33,7 +33,7 @@ public class ProfileTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
 
         loginPage.login();
-        homePage.pofileMenuClickable();
+        homePage.profileMenuClickable();
 
         assertTrue(driver.getCurrentUrl().contains("/profile"),
                 "URL did not navigate to the profile page.");
@@ -50,7 +50,7 @@ public class ProfileTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
 
         loginPage.login();
-        homePage.pofileMenuClickable();
+        homePage.profileMenuClickable();
         assertTrue(driver.getCurrentUrl().contains("/profile"));
 
 
