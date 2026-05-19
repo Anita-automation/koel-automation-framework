@@ -26,6 +26,10 @@ It inherits: driver wait and actions and helper methods*/
         waitForVisible(userAvatarIcon);
     }
 
+    public void waitForNewPlaylistModal() {
+        waitForVisible(createNewPlaylistBtn);
+    }
+
     //--------------
     //HEADER SECTION
     //--------------
@@ -101,11 +105,12 @@ It inherits: driver wait and actions and helper methods*/
         // scroll sidebar into view
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
 
+
+
         // wait until clickable
         waitForClickable(createNewPlaylistBtn).click();
 
-        // force click
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+
     }
 
     public boolean isNewPlaylistVisible() {
@@ -151,7 +156,7 @@ It inherits: driver wait and actions and helper methods*/
 
     //LOCATORS
 
-    private By playerFooter = By.cssSelector("footer.player");
+    private By playerFooter = By.cssSelector("img[alt='Sound bars']");
     private By playNextSongBtn = By.cssSelector("[data-testid='play-next-btn']");
     private By playBtn = By.xpath("//span[@role='button' and @title='Play or resume']");
     private By soundBar = By.xpath("//img[@alt='Sound bars']");

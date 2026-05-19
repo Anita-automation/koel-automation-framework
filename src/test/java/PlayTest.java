@@ -11,12 +11,10 @@ public class PlayTest extends BaseTest{
         LoginPage loginPage = new LoginPage(driver);
 
         // Login using your Page Object
-        loginPage.provideEmail("anita.surewicz@testpro.io")
-                .providePassword("AnitaAnita1029")
-                .clickSubmit();
+        loginPage.login();
 
         HomePage homePage = new HomePage(driver);
-        homePage.waitUntilLoaded();
+
 
         // Interact with the player using HomePage methods
         homePage.hoverOverPlayer();

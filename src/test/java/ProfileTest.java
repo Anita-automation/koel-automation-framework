@@ -13,10 +13,7 @@ public class ProfileTest extends BaseTest {
         LoginPage login = new LoginPage(driver);
         ProfilePage profile = new ProfilePage(driver);
 
-        login.navigateToPage()
-                .provideEmail("anita.surewicz@testpro.io")
-                .providePassword("AnitaAnita1029")
-                .clickSubmit();
+        login.login();
 
         profile.openProfile();
 
