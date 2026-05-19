@@ -42,5 +42,18 @@ public class ProfileTest extends BaseTest {
         assertTrue(driver.findElements(currentPasswordField).isEmpty(),
                 "Profile UI loaded, but it should not have.");
     }
+
+    @Test
+    public void profileBtnNavigatesToCorrectURL() {
+        LoginPage loginPage = new LoginPage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.login();
+        homePage.pofileMenuClickable();
+        assertTrue(driver.getCurrentUrl().contains("/profile"));
+
+
+    }
 }
 
