@@ -1,27 +1,99 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
+
+
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginValidEmailPassword() {
+        LoginPage loginPage = new LoginPage(driver); //this creates a LoginPage object, homepage received this driver
+        //and sends it to basepage, BasePage stores driver, wait, actions
+        //        ↓
+        //HomePage inherits everything from BasePage
+        HomePage homePage = new HomePage(driver);
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        loginPage.login();
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+    }
 
-        // TODO (for students): Review the configuration as part of HW15
-        
-        String url = "httpps://qa.koel.app/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    @Test
+    public void loginEmailMissingAtSignValidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
+    }
+
+    @Test
+    public void loginValidEmailEmptyPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
+    }
+
+    @Test
+    public void loginValidEmailInvalidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
+    }
+
+    @Test
+    public void invalidPasswordShowsErrorState() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.navigateToPage();
+
+                loginPage.provideEmail("anita.surewicz@testpro.io")
+                .providePassword("wrongPassword")
+                .clickSubmit();
+        Assert.assertTrue(loginPage.waitForErrorState());
+    }
+
+    @Test
+    public void loginEmptyEmailEmptyPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
+    }
+
+    @Test
+    public void loginRedirectsToPreviouslySavedPage() {
+        LoginPage loginPage = new LoginPage(driver);
+        driver.get("https://qa.koel.app/#/albums");
+
+        loginPage.login();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#/albums");
+        Assert.assertNotEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/home");
+    }
+
+    @Test
+    public void loginEmailMissingDotSignValidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
+    }
+
+    @Test
+    public void loginEmailMissingDomainValidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login();
+
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
     }
 }
+
+
